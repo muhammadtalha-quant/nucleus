@@ -1,6 +1,7 @@
 # Nucleus Architecture
 
-<!--toc:start-->
+> [!NOTE]
+> This repository is undergoing a breaking change, so I would suggest you to please wait till the branch is merged.
 
 - [Nucleus Architecture](#nucleus-architecture)
   - [Introduction](#introduction)
@@ -26,7 +27,6 @@
   - [LICENSE](#license)
   - [Footnotes](#footnotes)
 
-<!--toc:end-->
 
 ## Introduction
 
