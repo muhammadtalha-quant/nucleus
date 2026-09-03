@@ -5,14 +5,13 @@
 
     templates = {
 
-      default = {
-        path = ./default;
-        description = "Flake Template Directory";
+      minimal = {
+        path = ./minimal;
+        description = "Template that provides building blocks for building your NixOS system.";
       };
-
     };
 
-    defaultTemplate = self.templates.default;
+    defaultTemplate = self.templates.minimal;
 
   };
 }
