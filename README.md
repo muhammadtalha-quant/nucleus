@@ -1,7 +1,7 @@
 # Nucleus Architecture
 
 > [!NOTE]
-> This repository is undergoing a breaking change, and the documentation will be updated when the branch is merged. If you want to use it, then I would suggest to wait for the branch to be merged as the merge will mark the release v0.1.0 obsolete.
+> This nucleus architecture is undergoing a breaking change, and the documentation will be updated when the branch is merged. If you want to use it, then I would suggest to wait for the branch to be merged as the merge will mark the release v0.1.0 obsolete OR if you still want to use it then please take a look at the wiki, as the migration is not that hard to do.
 
 - [Nucleus Architecture](#nucleus-architecture)
   - [Introduction](#introduction)
