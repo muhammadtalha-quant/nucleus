@@ -144,7 +144,6 @@ Examples:
 - hardware configuration
 - kernel modules
 - drivers
-- filesystem information
 
 ## Getting Started
 
@@ -162,27 +161,7 @@ There are two scenarios for getting started with nucleus architecture:
 
 Inside the minimal iso session of NixOS, run the following commands one by one.
 
-#### Clone The Template Repository
-
-- Clone the template repository
-  - Enter root mode as suggested in the NixOS Manual.
-  - Since `git` is not available in the minimal ISO of NixOS, we have to install
-    it in a temporary shell.
-  - Clone the repository.
-  - Exit the shell that provided `git`.
-  - Remove the `.git` directory, so that the process doesn't throw errors
-    regarding impurity[^1].
-
-```bash
-sudo -i 
-nix-shell -p git 
-git clone https://github.com/muhammadtalha-quant/nucleus-template.git
-exit 
-cd nucleus-template/ 
-rm -rf .git
-```
-
-#### Preparation and Installation
+#### Initialization
 
 - Know your disk by running the following command.
 
