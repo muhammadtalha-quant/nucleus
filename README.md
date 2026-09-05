@@ -1,33 +1,5 @@
 # Nucleus Architecture
 
-<!--toc:start-->
-
-- [Nucleus Architecture](#nucleus-architecture)
-  - [Introduction](#introduction)
-  - [Goals](#goals)
-  - [Scope](#scope)
-  - [Host Management Model](#host-management-model)
-  - [Non-goals](#non-goals)
-  - [Tech Stack](#tech-stack)
-  - [Tree Structure](#tree-structure)
-    - [Core Concepts](#core-concepts)
-      - [Common](#common)
-      - [Features](#features)
-      - [Hosts](#hosts)
-  - [Getting Started](#getting-started)
-    - [Coming to NixOS From Other Distributions](#coming-to-nixos-from-other-distributions)
-      - [Clone The Template Repository](#clone-the-template-repository)
-      - [Preparation and Installation](#preparation-and-installation)
-      - [Installing NixOS from Modified Template](#installing-nixos-from-modified-template)
-    - [Migrating After Fresh Installation of NixOS](#migrating-after-fresh-installation-of-nixos)
-      - [Clone The Template Repository](#clone-the-template-repository-1)
-      - [Preparation and Building](#preparation-and-building)
-  - [Acknowledgments](#acknowledgments)
-  - [LICENSE](#license)
-  - [Footnotes](#footnotes)
-
-<!--toc:end-->
-
 ## Introduction
 
 Nucleus Architecture is a lightweight approach to organizing declarative NixOS
@@ -137,32 +109,6 @@ following flakes as core dependencies.
 ## Tree Structure
 
 ```text
-.
-├── flake.nix
-├── LICENSE
-├── modules
-│   ├── common
-│   │   └── disko.nix
-│   ├── features
-│   │   ├── configuration
-│   │   │   ├── configuration.nix
-│   │   │   └── modules
-│   │   │       ├── bootloader.nix
-│   │   │       ├── hardware.nix
-│   │   │       ├── i18n.nix
-│   │   │       ├── networking.nix
-│   │   │       ├── nh.nix
-│   │   │       ├── nix.nix
-│   │   │       ├── security.nix
-│   │   │       ├── services.nix
-│   │   │       └── users.nix
-│   │   └── dotfiles
-│   │       └── home.nix
-│   └── hosts
-│       └── «hostname»
-│           ├── default.nix
-│           └── hardware-configuration.nix
-└── README.md
 ```
 
 ### Core Concepts
