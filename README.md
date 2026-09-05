@@ -121,8 +121,9 @@ Configuration shared by every machine.
 
 Examples:
 
-- disko layout
-- shared overlays
+- disko layout for partitioning
+- core nixos configuration for both servers and desktops.
+- custom overlays and derivations shared across machines.
 
 #### Features
 
@@ -321,4 +322,3 @@ BSD 3-Clause License
 ## Footnotes
 
 > [^1]: Impurity is Nix flake concept wherein if your flake repository does not track latest changes then your repository is considered impure and the build will fail. This error is often thrown during build process when a new file is not added to repository, although it exists in the directory.
-
