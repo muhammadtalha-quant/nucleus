@@ -31,7 +31,7 @@
 ## Introduction
 
 > [!WARNING]
-> **Disclaimer:** By adopting the *Nucleus Architecture*, your configuration will be not reproducible out of NixOS, even if you install nix.
+> **Disclaimer:** By adopting the *Nucleus Architecture*, your configuration will be not reproducible outside of NixOS, even if you have the nix package manager installed on other distributions.
 
 Nucleus Architecture is a lightweight approach to organizing declarative NixOS
 configurations using flakes.
