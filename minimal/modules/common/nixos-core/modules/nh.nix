@@ -1,5 +1,5 @@
-{
-  programs.nh = {
+{ lib, ... }: {
+  programs.nh = lib.mkDefault {
     enable = true;
     clean = {
       enable = true;
