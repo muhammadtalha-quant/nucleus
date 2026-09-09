@@ -1,10 +1,11 @@
 {
   hashedRootPassword,
+  lib,
   ...
 }:
 {
   users = {
-    mutableUsers = false;
+    mutableUsers = lib.mkDefault false;
     users.root.hashedPassword = hashedRootPassword;
   };
 }
