@@ -1,6 +1,8 @@
 # Devenv
 .devenv*
 devenv.local.nix
+flake.lock
+*/flake.lock
 devenv.local.yaml
 
 # direnv
