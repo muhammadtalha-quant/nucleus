@@ -1,5 +1,4 @@
 {
-  userName,
   gpgKey,
   emailAddress,
   realName,
@@ -36,12 +35,6 @@
         "https://gist.github.com" = {
           helper = "/run/current-system/sw/bin/gh auth git-credential";
         };
-      };
-      http = {
-        version = "HTTP/1.1";
-        postBuffer = 524288000;
-        lowSpeedLimit = 1000;
-        lowSpeedTime = 600;
       };
     };
   };
