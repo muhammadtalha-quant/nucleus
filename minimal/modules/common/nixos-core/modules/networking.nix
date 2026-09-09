@@ -1,6 +1,10 @@
-{
+{ lib, ... }: {
   networking = {
-    firewall.enable = true;
+    firewall = lib.mkDefault {
+      enable = true;
+      allowedUDPPorts = [ ];
+      allowedTCPPorts = [ ];
+    };
     networkmanager.enable = true;
   };
 }
