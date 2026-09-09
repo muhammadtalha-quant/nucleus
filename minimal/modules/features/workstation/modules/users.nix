@@ -1,5 +1,4 @@
 {
-  pkgs,
   userName,
   realName,
   hashedUserPassword,
@@ -14,7 +13,6 @@
         "networkmanager"
         "wheel"
       ];
-      shell = pkgs.fish;
       hashedPassword = hashedUserPassword;
     };
   };
