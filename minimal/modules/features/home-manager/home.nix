@@ -14,10 +14,9 @@
   programs.home-manager.enable = true;
   home = {
     username = userName;
-    pointerCursor.enable = true;
     homeDirectory = "/home/${userName}";
     packages = with pkgs; [
-      hello
+      hello # this is a dummy package, remove it
     ];
     inherit stateVersion;
   };
