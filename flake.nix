@@ -9,9 +9,7 @@
         path = ./minimal;
         description = "Template that provides building blocks for building your NixOS system.";
       };
+      default = self.templates.minimal;
     };
-
-    defaultTemplate = self.templates.minimal;
-
   };
 }
