@@ -1,5 +1,5 @@
 {
-  description = "A modular multi host flake that manages one complete single user NixOS system at a time, using the nucleus architecture.";
+  description = "A minimal starter for NixOS based on Nucleus Architecture.";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -12,10 +12,6 @@
       url = "github:nix-community/disko/latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    stylix = {
-      url = "github:nix-community/stylix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs =
@@ -23,57 +19,40 @@
       self,
       nixpkgs,
       home-manager,
-      stylix,
       disko,
       ...
     }@inputs:
     let
       # !=== SYSTEM CONFIG ===!
-      userName = "muhammadtalha";
-      hostName = "hp-probook-430g2";
-      timeZone = "Asia/Karachi";
+      userName = "DESIRED_USERNAME";
+      hostName = "DESIRED_HOSTNAME";
+      timeZone = "REGION/CITY";
       locale = "en_US.UTF-8";
-      hashedUserPassword = "$y$j9T$T/fyOwJSnwDN5vhbYvxOU0$xWmn12BoAIyDVChelEt7LyhGHQTMlJjd/5OEuy6Ud65";
-      hashedRootPassword = "$y$j9T$CXXX951qyBSRGHfHxZ8E01$ooy/jGSGAqWqdNQ0WA9pMbjibDGYoA2jsmDU8GJhbv2";
-      stateVersion = "26.05";
+      hashedUserPassword = "STDOUT OF 'mkpasswd -m yescrypt YOUR_DESIRED_USER_PASSWORD'";
+      hashedRootPassword = "STDOUT OF 'mkpasswd -m yescrypt YOUR_DESIRED_ROOT_PASSWORD'";
+      stateVersion = "YEAR.RELEASE";
 
       # !=== USER CONFIG ===!
-      realName = "Muhammad Talha";
+      realName = "YOUR REAL NAME";
 
       # !=== DISKO CONFIG ===!
-      storageDevice = "/dev/sda";
-      swapSize = "4G"; # size of swap partition
+      storageDevice = "/dev/DEVICE";
+      swapSize = "8G";
 
       # !=== ENVIRONMENT CONFIG ===!
-      configDirectory = "/home/${userName}/nucleonix/";
+      configDirectory = "/etc/nixos/";
 
       # !=== HOME MANAGER ===!
       extraSpecialArgs = {
         inherit inputs;
-        inherit stylix;
         inherit realName;
         inherit stateVersion;
-        emailAddress = "muhammadtalha.quant@gmail.com";
-        gpgKey = "33DF23031DE1A83C";
-      };
-
-      # !=== SYNCTHING CONFIG ===!
-      devices = {
-        myphone = {
-          id = "7XVOG6S-6BTWJNS-MHZ4QLW-YG4NWLD-JHD7ODT-ANKSLBW-CQMTKVZ-PAYT2QV";
-          addresses = [ "dynamic" ];
-        };
-      };
-      folders = {
-        "/home/${userName}/sync" = {
-          enable = true;
-          id = "sync";
-          devices = [ "myphone" ];
-        };
+        emailAddress = "you@mailbox.com";
+        gpgKey = "XXXXXXXXXXXXXXXX";
       };
     in
     {
-      diskoConfigurations.${hostName} = import ./modules/common/disko/laptop.nix {
+      diskoConfigurations.${hostName} = import ./modules/common/disko/bare-ext4.nix {
         inherit storageDevice;
         inherit swapSize;
       };
@@ -98,8 +77,6 @@
             inherit locale;
             inherit swapSize;
             inherit extraSpecialArgs;
-            inherit devices;
-            inherit folders;
             inherit inputs;
           };
           modules = [
@@ -109,7 +86,7 @@
             home-manager.nixosModules.home-manager
             ./modules/features/home-manager/decl.nix
             disko.nixosModules.disko
-            ./modules/common/disko/laptop.nix
+            ./modules/common/disko/bare-ext4.nix
           ];
         };
     };
