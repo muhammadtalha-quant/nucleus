@@ -2,6 +2,7 @@
   inputs,
   pkgs,
   locale,
+  configDirectory,
   ...
 }:
 {
@@ -21,6 +22,7 @@
   environment = {
     sessionVariables = {
       LANG = locale;
+      CONFIG = configDirectory;
     };
     systemPackages = with pkgs; [
       nix-output-monitor
