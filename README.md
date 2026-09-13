@@ -2,6 +2,8 @@
 
 ## Introduction
 
+> [!NOTE]
+> For full documentation of the project, please take a look at the [**Wiki.**](https://github.com/muhammadtalha-quant/nucleus/wiki)
 Nucleus Architecture is a lightweight approach to organizing declarative NixOS
 configurations using flakes.
 
@@ -102,25 +104,21 @@ following flakes as core dependencies.
 - _**nixpkgs:**_ uses rolling release instance of NixOS for building OS
   generation and programs included in package list.
 
-## Tree Structure
-
-> To be documented
-
 ### Core Concepts
 
 Nucleus organizes configuration into three layers:
 
-#### Common
+#### Common Configuration
 
 Configuration shared by every machine.
 
 Examples:
 
 - disko layout for partitioning
-- core nixos configuration for both servers and desktops.
+- core NixOS configuration for both servers and desktops.
 - custom overlays and derivations shared across machines.
 
-#### Features
+#### Configuration Modules as Features
 
 Reusable system capabilities.
 
@@ -131,7 +129,7 @@ Examples:
 - development tools
 - applications
 
-#### Hosts
+#### Hosts and Per Machine Configuration
 
 Machine-specific configuration.
 
@@ -140,10 +138,6 @@ Examples:
 - hardware configuration
 - kernel modules
 - drivers
-
-## Getting Started
-
-> To be documented
 
 ## Acknowledgments
 
