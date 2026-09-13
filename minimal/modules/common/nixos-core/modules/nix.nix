@@ -7,6 +7,7 @@
       ];
       trusted-users = [
         "root"
+        "@wheel"
       ];
     };
     optimise = {
