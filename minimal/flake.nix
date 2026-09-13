@@ -27,7 +27,6 @@
       userName = "DESIRED_USERNAME";
       hostName = "DESIRED_HOSTNAME";
       timeZone = "REGION/CITY";
-      locale = "en_US.UTF-8";
       hashedUserPassword = "STDOUT OF 'mkpasswd -m yescrypt YOUR_DESIRED_USER_PASSWORD'";
       hashedRootPassword = "STDOUT OF 'mkpasswd -m yescrypt YOUR_DESIRED_ROOT_PASSWORD'";
       stateVersion = "YEAR.RELEASE";
@@ -74,7 +73,6 @@
             inherit timeZone;
             inherit configDirectory;
             inherit storageDevice;
-            inherit locale;
             inherit swapSize;
             inherit extraSpecialArgs;
             inherit inputs;
