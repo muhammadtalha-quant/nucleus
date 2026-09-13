@@ -54,7 +54,7 @@ frameworks may be more appropriate.
 > [!CAUTION]
 >
 > - This architecture is strictly designed for personal NixOS configurations.
-> - For production use, please default to
+> - For infrastructure-oriented use, please default to
 >   [**hercules-ci/flake-parts**](https://github.com/hercules-ci/flake-parts) or
 >   [**denful/den**](https://github.com/denful/den).
 > - Only **UEFI** systems are supported.
@@ -73,19 +73,17 @@ When adding a new host:
 3. Move host-specific configuration into the corresponding host directory.
 4. Import and maintain the configuration for that host independently.
 
-Nucleus does not aim to be a centralized fleet management system where every
-machine is controlled from a single configuration repository.
-
-While technically possible, managing a large number of hosts from one repository
-requires additional processes and is outside the intended scope of this
-architecture.
+Nucleus aims to be a centralized fleet management system where every
+machine is controlled from a single configuration repository. However, it does
+not aim to be a centralized fleet management system at infrastructure level for
+thousands of machines.
 
 ## Non-goals
 
 Nucleus is intentionally not designed to:
 
 - Replace general-purpose Nix configuration frameworks.
-- Provide fleet management or infrastructure deployment features.
+- Provide fleet management on infrastructure level.
 - Solve every possible NixOS configuration scenario.
 - Become a universal standard for organizing NixOS systems.
 
@@ -154,4 +152,4 @@ Examples:
 
 ## LICENSE
 
-BSD 3-Clause License
+[BSD 3-Clause License](./LICENSE)
