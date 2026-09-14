@@ -2,7 +2,6 @@
 {
   programs = {
     localsend.enable = true;
-    seahorse.enable = true;
     nh.flake = configDirectory;
     gnupg.agent = {
       settings = {
