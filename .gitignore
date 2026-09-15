@@ -1,4 +1,12 @@
-.direnv
+# Devenv
+.devenv*
+devenv.local.nix
 flake.lock
-.envrc
-# ignored on purpose, coz this is a template repo
+*/flake.lock
+devenv.local.yaml
+
+# direnv
+.direnv
+
+# pre-commit
+.pre-commit-config.yaml

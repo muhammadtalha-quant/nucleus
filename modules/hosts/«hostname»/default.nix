@@ -1,5 +1,0 @@
-{ pkgs, ... }: {
-    imports = [ ./hardware-configuration.nix ];
-    # DECLARATIVELY DEFINE THE NON REUSABLE CONFIGURATION FOR YOUR HOST
-    # IN OTHER WORDS, CONFIGURATION THAT YOUR HOST NEEDS EXPLICITLY.
-}
