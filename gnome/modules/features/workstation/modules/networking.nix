@@ -1,7 +1,5 @@
-{ hostName, ... }:
 {
   networking = {
-    inherit hostName;
     firewall = {
       allowedTCPPorts = [
         # port1 port2 port3 ...
