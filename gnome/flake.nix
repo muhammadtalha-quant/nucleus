@@ -23,68 +23,87 @@
       ...
     }@inputs:
     let
-      # !=== SYSTEM CONFIG ===!
-      userName = "DESIRED_USERNAME";
-      hostName = "DESIRED_HOSTNAME";
-      timeZone = "REGION/CITY";
-      hashedUserPassword = "STDOUT OF 'mkpasswd -m yescrypt YOUR_DESIRED_USER_PASSWORD'";
       hashedRootPassword = "STDOUT OF 'mkpasswd -m yescrypt YOUR_DESIRED_ROOT_PASSWORD'";
-      stateVersion = "YEAR.RELEASE";
 
-      # !=== USER CONFIG ===!
-      realName = "YOUR REAL NAME";
+      # !=== HOSTS DEFINITION ===!
+      hosts = {
+        laptop = {
+          hostName = "DESIRED_HOSTNAME";
+          stateVersion = "YEAR.RELEASE OF THE ISO YOU ARE INSTALLING FROM";
+          timeZone = "REGION/CITY";
+          disko = {
+            storageDevice = "/dev/DEVICE";
+            swapSize = "8G";
+          };
+        };
+        # other hosts....
+      };
 
-      # !=== DISKO CONFIG ===!
-      storageDevice = "/dev/DEVICE";
-      swapSize = "8G";
+      # !=== USERS DEFINITION ===!
+      users = {
+        primary = {
+          userName = "DESIRED_USERNAME";
+          realName = "YOUR REAL NAME";
+          hashedUserPassword = "STDOUT OF 'mkpasswd -m yescrypt YOUR_DESIRED_USER_PASSWORD'";
+          emailAddress = "you@mailbox.com";
+          gpgKey = "XXXXXXXXXXXXXXXX";
+        };
+        #secondary = {
+        # userName = "DESIRED_USERNAME";
+        # realName = "YOUR REAL NAME";
+        # hashedUserPassword = "STDOUT OF 'mkpasswd -m yescrypt YOUR_DESIRED_USER_PASSWORD'";
+        # emailAddress = "you@mailbox.com";
+        # gpgKey = "XXXXXXXXXXXXXXXX";
+        #};
+        #... other users
+      };
 
       # !=== ENVIRONMENT CONFIG ===!
       configDirectory = "/etc/nixos/";
 
       # !=== HOME MANAGER ===!
       hmArgs = {
-        inherit realName;
-        inherit stateVersion;
-        emailAddress = "you@mailbox.com";
-        gpgKey = "XXXXXXXXXXXXXXXX";
+        inherit (users.primary) emailAddress; # maybe secondary?
+        inherit (users.primary) gpgKey; # maybe secondary?
+        # ...other parameters
       };
     in
     {
-      diskoConfigurations.${hostName} = import ./modules/common/disko/bare-ext4.nix {
-        inherit storageDevice;
-        inherit swapSize;
-      };
-      nixosConfigurations.${hostName} =
-        let
-          hostHardware = builtins.fromJSON (
-            builtins.readFile ./modules/hosts/${hostName}/hardware_report.json
-          );
-        in
-        nixpkgs.lib.nixosSystem {
-          inherit (hostHardware) system;
-          specialArgs = {
-            inherit userName;
-            inherit hashedRootPassword;
-            inherit hashedUserPassword;
-            inherit stateVersion;
-            inherit realName;
-            inherit hostName;
-            inherit timeZone;
-            inherit configDirectory;
-            inherit storageDevice;
-            inherit swapSize;
-            inherit hmArgs;
-            inherit inputs;
-          };
-          modules = [
-            ./modules/common/nixos-core/core.nix
-            ./modules/features/workstation/workstation.nix
-            ./modules/hosts/${hostName}/default.nix
-            home-manager.nixosModules.home-manager
-            ./modules/features/home-manager/decl.nix
-            disko.nixosModules.disko
-            ./modules/common/disko/bare-ext4.nix
-          ];
+      diskoConfigurations.${hosts.laptop.hostName} =
+        import ./modules/common/disko/bare-ext4.nix hosts.laptop.disko;
+      nixosConfigurations.${hosts.laptop.hostName} = nixpkgs.lib.nixosSystem {
+        inherit
+          (
+            (builtins.fromJSON (
+              builtins.readFile ./modules/hosts/${hosts.laptop.hostName}/hardware_report.json
+            ))
+          )
+          system
+          ;
+        specialArgs = {
+          inherit hashedRootPassword;
+          inherit hmArgs;
+          inherit inputs;
+          inherit configDirectory;
+          inherit (users.primary) userName;
+          inherit (users.primary) hashedUserPassword;
+          inherit (users.primary) realName;
+          # include other users if you want and then add the user to your users.nix
+          inherit (hosts.laptop.disko) swapSize;
+          inherit (hosts.laptop.disko) storageDevice;
+          inherit (hosts.laptop) hostName;
+          inherit (hosts.laptop) timeZone;
+          inherit (hosts.laptop) stateVersion;
         };
+        modules = [
+          ./modules/common/nixos-core/core.nix
+          ./modules/features/workstation/workstation.nix
+          ./modules/hosts/${hosts.laptop.hostName}/default.nix
+          home-manager.nixosModules.home-manager
+          ./modules/features/home-manager/decl.nix
+          disko.nixosModules.disko
+          ./modules/common/disko/bare-ext4.nix
+        ];
+      };
     };
 }

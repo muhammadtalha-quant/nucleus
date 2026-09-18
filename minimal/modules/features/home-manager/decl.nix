@@ -1,6 +1,7 @@
 {
   inputs,
   userName,
+  stateVersion,
   hmArgs,
   ...
 }:
@@ -9,6 +10,7 @@
     extraSpecialArgs = hmArgs // {
       inherit userName;
       inherit inputs;
+      inherit stateVersion;
     };
     useGlobalPkgs = true;
     useUserPackages = true;
