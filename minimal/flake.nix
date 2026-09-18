@@ -36,7 +36,6 @@
             swapSize = "8G";
           };
         };
-        # other hosts....
       };
 
       # !=== USERS DEFINITION ===!
@@ -44,18 +43,10 @@
         primary = {
           userName = "DESIRED_USERNAME";
           realName = "YOUR REAL NAME";
-          hashedUserPassword = "STDOUT OF 'mkpasswd -m yescrypt YOUR_DESIRED_USER_PASSWORD'";
+          hashedPassword = "STDOUT OF 'mkpasswd -m yescrypt YOUR_DESIRED_USER_PASSWORD'";
           emailAddress = "you@mailbox.com";
           gpgKey = "XXXXXXXXXXXXXXXX";
         };
-        #secondary = {
-        # userName = "DESIRED_USERNAME";
-        # realName = "YOUR REAL NAME";
-        # hashedUserPassword = "STDOUT OF 'mkpasswd -m yescrypt YOUR_DESIRED_USER_PASSWORD'";
-        # emailAddress = "you@mailbox.com";
-        # gpgKey = "XXXXXXXXXXXXXXXX";
-        #};
-        #... other users
       };
 
       # !=== ENVIRONMENT CONFIG ===!
@@ -63,9 +54,10 @@
 
       # !=== HOME MANAGER ===!
       hmArgs = {
-        inherit (users.primary) emailAddress; # maybe secondary?
-        inherit (users.primary) gpgKey; # maybe secondary?
-        # ...other parameters
+        inherit (users.primary) emailAddress;
+        inherit (users.primary) userName;
+        inherit (users.primary) realName;
+        inherit (users.primary) gpgKey;
       };
     in
     {
@@ -85,10 +77,7 @@
           inherit hmArgs;
           inherit inputs;
           inherit configDirectory;
-          inherit (users.primary) userName;
-          inherit (users.primary) hashedUserPassword;
-          inherit (users.primary) realName;
-          # include other users if you want and then add the user to your users.nix
+          inherit users;
           inherit (hosts.laptop.disko) swapSize;
           inherit (hosts.laptop.disko) storageDevice;
           inherit (hosts.laptop) hostName;
