@@ -12,13 +12,23 @@
 ## Introduction
 
 > [!NOTE]
-> For full documentation of the project, please visit the [**Nucleus Wiki.**](https://github.com/muhammadtalha-quant/nucleus/wiki/Nucleus-Architecture)
+> For full documentation of the project, please visit the [**Nucleus Wiki.**](https://github.com/muhammadtalha-quant/nucleus/wiki/)
+
 Nucleus Architecture is a lightweight, abstraction-free and easy to debug
 configuration architecture inspired by the dendritic pattern for
 maintaining NixOS systems using some of the best practices encouraged by the ecosystem.
+Nucleus is designed for NixOS users that are overwhelmed by tons of different
+approaches for configuring your NixOS systems.
 
 Nucleus focuses on keeping configurations modular and understandable by
 separating reusable components from host-specific configuration.
+
+> [!NOTE]
+> **Why the name Nucleus ?**
+> The architecture is named nucleus because its working model
+> is somewhat similar to nucleus in real animal/plant cell.
+> The root `flake.nix` manages multiple hosts and their capabilities and consider
+> them as an organelle.
 
 ## Goals
 
