@@ -1,7 +1,12 @@
-# Nucleus Architecture
+<div align="center">
+<img width="1038" height="319" alt="navbar" src="https://github.com/user-attachments/assets/c3577b7e-e9d7-4aef-8a87-d189a1dd2dd9" />
+  <br/><br/>
+</div>
+
+# Nucleus
 
 <!--toc:start-->
-- [Nucleus Architecture](#nucleus-architecture)
+- [Nucleus](#nucleus)
   - [Introduction](#introduction)
   - [Goals](#goals)
   - [Scope](#scope)
@@ -14,7 +19,7 @@
 > [!NOTE]
 > For full documentation of the project, please visit the [**Nucleus Wiki.**](https://github.com/muhammadtalha-quant/nucleus/wiki/)
 
-Nucleus Architecture is a lightweight, abstraction-free and easy to debug
+Nucleus is a lightweight, abstraction-free and easy to debug
 configuration architecture inspired by the dendritic pattern for
 maintaining NixOS systems using some of the best practices encouraged by the ecosystem.
 Nucleus is designed for NixOS users that are overwhelmed by tons of different
@@ -66,7 +71,7 @@ frameworks may be more appropriate.
 ## Acknowledgments
 
 - **Nucleus Architecture** made with Love++ and AI--.
-- Contributions are accepted in any format: issue, pull request, discussions etc.
+- Valuable and meaningful contributions are accepted in any format: issue, pull request etc.
 
 ## LICENSE
 
