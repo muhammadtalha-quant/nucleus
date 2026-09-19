@@ -8,7 +8,6 @@
 <!--toc:start-->
 - [Nucleus](#nucleus)
   - [Introduction](#introduction)
-  - [Goals](#goals)
   - [Scope](#scope)
   - [Acknowledgments](#acknowledgments)
   - [LICENSE](#license)
@@ -35,18 +34,6 @@ separating reusable components from host-specific configuration.
 > The root `flake.nix` manages multiple hosts and their capabilities and consider
 > them as an organelle.
 
-## Goals
-
-Nucleus aims to provide:
-
-- A predictable structure for personal NixOS configurations.
-- Clear separation between shared configuration, reusable features, and
-  host-specific details.
-- A reproducible installation and migration workflow.
-- A configuration layout that remains understandable over long periods of time.
-- A practical starting point for users who want to build and maintain their own
-  NixOS systems using the best NixOS practices.
-
 ## Scope
 
 Nucleus is designed for personal NixOS configurations.
@@ -70,7 +57,7 @@ frameworks may be more appropriate.
 
 ## Acknowledgments
 
-- **Nucleus Architecture** made with Love++ and AI--.
+- **Nucleus** made with Love++ and AI--.
 - Valuable and meaningful contributions are accepted in any format: issue, pull request etc.
 
 ## LICENSE
