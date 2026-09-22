@@ -84,7 +84,7 @@ simplicity, ownership, and maintainability are the priority.
 ## Acknowledgments
 
 - **Nucleus** made with Love++ and AI--.
-- Valuable and meaningful contributions are accepted in any format: issue, pull request etc.
+- For contributions, see [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## LICENSE
 
