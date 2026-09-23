@@ -6,7 +6,7 @@ Thank you for your interest in contributing to Nucleus. This guide explains the 
 
 - **NixOS system** (latest stable or unstable)
 - Git
-- Flakes enabled in Nix configuration
+- Flakes and Nix Command enabled in Nix configuration
 - Devenv installed
 - Basic knowledge of Nix and NixOS
 
@@ -18,13 +18,7 @@ Thank you for your interest in contributing to Nucleus. This guide explains the 
    cd nucleus
    ```
 
-2. **Install Devenv and Enable Flakes**
-   ```bash
-   curl -fsSL https://get.devenv.sh | bash
-   export NIX_CONFIG="experimental-features = flakes nix-command"
-   ```
-
-3. **Enter Development Environment**
+2. **Enter Development Environment**
    ```bash
    devenv shell
    ```
@@ -56,32 +50,26 @@ Thank you for your interest in contributing to Nucleus. This guide explains the 
 2. Follow existing naming conventions (no hyphens in identifiers).
 3. Include clear comments explaining configuration options.
 4. Test with at least one starter template (minimal, kde, or gnome).
-5. Document the module in a discussion or wiki page.
+5.Reproduce the change across all starters if applicable.
+6. Document the module in a discussion or wiki page.
 
 ## Commit Guidelines
 
 - Write clear, descriptive commit messages in imperative form
 - Reference related issues (e.g., "Fixes #42" or "Related to #15")
 - Keep commits focused: one feature or fix per commit
-- Include your real name and email in commits
 
 ## Pull Request Process
 
 1. Create a feature branch: `git checkout -b feature/description`
 2. Make your changes following the code style
-3. Validate your work:
-   ```bash
-   statix check .       # Lint Nix code
-   nixfmt *.nix         # Format Nix files
-   nix flake check      # Check flake validity
-   ```
-4. Test all starters:
+3. Test all starters:
    ```bash
    test-minimal; test-gnome; test-kde
    ```
-5. Push your branch and open a pull request with a clear description
-6. Link related issues in the PR description
-7. Respond to review feedback promptly
+4. Push your branch and open a pull request with a clear description
+5. Link related issues in the PR description
+6. Respond to review feedback promptly
 
 ## Code Style and Structure
 
@@ -103,15 +91,14 @@ modules/
   features/        # Reusable optional features
     home-manager/  # User dotfiles and packages
     workstation/   # Desktop environment setup
-  hosts/           # Host-specific configuration
+  hosts/           # Host configuration
     HOSTNAME/
-      default.nix
-      hardware_report.json
+      default.nix  # Overriden Config + Driver etc
 ```
 
 ### Naming Conventions
 
-- Host names: lowercase, no hyphens (e.g., `laptop`, `desktop`, `server`)
+- Host names: lowercase, no hyphens (e.g., `laptop`, `desktop`, `server`) (in left hand side)
 - Module names: descriptive, snake_case (e.g., `my_feature.nix`)
 - Variables: camelCase for Nix attributes (e.g., `hostName`, `stateVersion`)
 
@@ -120,14 +107,8 @@ modules/
 Before submitting a pull request:
 
 1. Ensure you are in the devenv shell
-2. Lint and format:
-   ```bash
-   statix check .
-   nixfmt *.nix
-   markdownlint-cli2 .
-   ```
-3. Test all starters: `test-minimal; test-gnome; test-kde`
-4. Document any new configuration options or modules
+2. Test all starters: `test-minimal; test-gnome; test-kde`
+3. Document any new configuration options or modules
 
 ## Questions and Discussions
 
