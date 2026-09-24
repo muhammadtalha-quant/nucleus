@@ -10,7 +10,7 @@
     signing = {
       key = gpgKey;
       format = "openpgp";
-      signByDefault = true;
+      signByDefault = false;
       signer = "/run/current-system/sw/bin/gpg2";
     };
     settings = {
