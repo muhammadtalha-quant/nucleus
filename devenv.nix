@@ -10,9 +10,6 @@
   packages = with pkgs; [
     statix
     nixfmt
-    marksman
-    markdownlint-cli2
-    markdown-toc
   ];
   languages.nix = {
     enable = true;
