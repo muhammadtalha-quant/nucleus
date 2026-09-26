@@ -10,7 +10,7 @@
   packages = with pkgs; [
     statix
     nixfmt
-    nixfmt-tree
+    treefmt
   ];
   languages.nix = {
     enable = true;
@@ -21,6 +21,6 @@
     test-gnome.exec = "cd gnome && nix flake check .";
     test-kde.exec = "cd kde && nix flake check .";
     lint.exec = "statix check";
-    format.exec = "treefmt --ci *";
+    format.exec = "treefmt --config-file treefmt.toml --ci";
   };
 }
