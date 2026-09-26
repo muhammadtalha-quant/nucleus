@@ -1,6 +1,5 @@
 allow-missing-formatter = false
-excludes = ["*.md", "*.yaml", "*.toml", "*.lock"]
-fail-on-change = true
+excludes = ["*.md", "*.yaml", "*.toml", "*.lock", ".devenv/*", ".git/*"]
 formatters = ["nix"]
 on-unmatched = "info"
 tree-root-cmd = "git rev-parse --show-toplevel"
@@ -9,7 +8,7 @@ walk = "filesystem"
 
 [formatter.nix]
 command = "nixfmt"
-options = ["--width=100", "--indent=2"]
+options = [ "--width=80", "--indent=2" ]
 includes = ["*.nix"]
 excludes = []
 priority = 0
