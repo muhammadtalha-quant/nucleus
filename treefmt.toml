@@ -1,5 +1,5 @@
 allow-missing-formatter = false
-excludes = ["*.md", "*.yaml", "*.toml", "*.lock", ".devenv/*", ".git/*"]
+excludes = ["*.md", "*.yaml", "*.toml", "*.lock", ".devenv/*", ".git/*", ".github/*", ".gitignore", "LICENSE"]
 formatters = ["nix"]
 on-unmatched = "info"
 tree-root-cmd = "git rev-parse --show-toplevel"
