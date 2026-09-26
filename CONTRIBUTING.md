@@ -13,12 +13,14 @@ Thank you for your interest in contributing to Nucleus. This guide explains the 
 ## Development Setup
 
 1. **Clone the Repository**
+
    ```bash
    git clone https://github.com/muhammadtalha-quant/nucleus.git
    cd nucleus
    ```
 
 2. **Enter Development Environment**
+
    ```bash
    devenv shell
    ```
@@ -50,7 +52,7 @@ Thank you for your interest in contributing to Nucleus. This guide explains the 
 2. Follow existing naming conventions (no hyphens in identifiers).
 3. Include clear comments explaining configuration options.
 4. Test with at least one starter template (minimal, kde, or gnome).
-5.Reproduce the change across all starters if applicable.
+5. Reproduce the change across all starters.
 6. Document the module in a discussion or wiki page.
 
 ## Commit Guidelines
@@ -64,9 +66,11 @@ Thank you for your interest in contributing to Nucleus. This guide explains the 
 1. Create a feature branch: `git checkout -b feature/description`
 2. Make your changes following the code style
 3. Test all starters:
+
    ```bash
    test-minimal; test-gnome; test-kde
    ```
+
 4. Push your branch and open a pull request with a clear description
 5. Link related issues in the PR description
 6. Respond to review feedback promptly
@@ -98,8 +102,8 @@ modules/
 
 ### Naming Conventions
 
-- Host names: lowercase, no hyphens (e.g., `laptop`, `desktop`, `server`) (in left hand side)
-- Module names: descriptive, snake_case (e.g., `my_feature.nix`)
+- Host names: camelCase, no hyphens (e.g., `laptop`, `someCoolComputer`, `hpProbook430G2`) (in left hand side)
+- Module names: descriptive, kebab-case (e.g., `my-feature.nix`)
 - Variables: camelCase for Nix attributes (e.g., `hostName`, `stateVersion`)
 
 ## Testing Your Changes
