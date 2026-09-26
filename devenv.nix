@@ -21,6 +21,6 @@
     test-gnome.exec = "cd gnome && nix flake check .";
     test-kde.exec = "cd kde && nix flake check .";
     lint.exec = "statix check";
-    format.exec = "treefmt --config-file treefmt.toml --ci";
+    format-ci.exec = "treefmt --config-file treefmt.toml --ci";
   };
 }
