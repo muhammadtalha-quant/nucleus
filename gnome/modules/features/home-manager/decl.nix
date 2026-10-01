@@ -1,18 +1,18 @@
 {
   inputs,
-  stateVersion,
-  hmArgs,
+  currentHost,
+  users,
   ...
 }:
 {
   home-manager = {
-    extraSpecialArgs = hmArgs // {
+    extraSpecialArgs = {
       inherit inputs;
-      inherit stateVersion;
+      inherit (currentHost) stateVersion;
     };
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.${hmArgs.userName} = import ./home.nix;
+    users.${users.primary.userName} = import ./home.nix;
     backupFileExtension = "backup";
   };
 }

@@ -1,7 +1,6 @@
 {
   inputs,
-  timeZone,
-  stateVersion,
+  currentHost,
   ...
 }:
 {
@@ -9,7 +8,7 @@
     (inputs.import-tree ./modules)
   ];
 
-  time = { inherit timeZone; };
+  time = { inherit (currentHost) timeZone; };
   nixpkgs.config.allowUnfree = true;
-  system = { inherit stateVersion; };
+  system = { inherit (currentHost) stateVersion; };
 }

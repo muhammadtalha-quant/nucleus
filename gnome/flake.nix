@@ -23,15 +23,13 @@
       ...
     }@inputs:
     let
-      hashedRootPassword = "STDOUT OF 'mkpasswd -m yescrypt YOUR_DESIRED_ROOT_PASSWORD'";
-
       # !=== HOSTS DEFINITION ===!
       hosts = {
         laptop = {
           hostName = "DESIRED_HOSTNAME";
           stateVersion = "YEAR.RELEASE OF THE ISO YOU ARE INSTALLING FROM";
           timeZone = "REGION/CITY";
-          disko = {
+          diskoConfig = {
             storageDevice = "/dev/DEVICE";
             swapSize = "8G";
           };
@@ -40,6 +38,7 @@
 
       # !=== USERS DEFINITION ===!
       users = {
+        root.hashedPassword = "STDOUT OF 'mkpasswd -m yescrypt YOUR_DESIRED_ROOT_PASSWORD'";
         primary = {
           userName = "DESIRED_USERNAME";
           realName = "YOUR REAL NAME";
@@ -52,47 +51,41 @@
       # !=== ENVIRONMENT CONFIG ===!
       configDirectory = "/etc/nixos/";
 
-      # !=== HOME MANAGER ===!
-      hmArgs = {
-        inherit (users.primary) emailAddress;
-        inherit (users.primary) userName;
-        inherit (users.primary) realName;
-        inherit (users.primary) gpgKey;
-      };
     in
     {
       diskoConfigurations.${hosts.laptop.hostName} =
-        import ./modules/common/disko/bare-ext4.nix hosts.laptop.disko;
-      nixosConfigurations.${hosts.laptop.hostName} = nixpkgs.lib.nixosSystem {
-        inherit
-          (
-            (builtins.fromJSON (
-              builtins.readFile ./modules/hosts/${hosts.laptop.hostName}/hardware_report.json
-            ))
-          )
-          system
-          ;
-        specialArgs = {
-          inherit hashedRootPassword;
-          inherit hmArgs;
-          inherit inputs;
-          inherit configDirectory;
-          inherit users;
-          inherit (hosts.laptop.disko) swapSize;
-          inherit (hosts.laptop.disko) storageDevice;
-          inherit (hosts.laptop) hostName;
-          inherit (hosts.laptop) timeZone;
-          inherit (hosts.laptop) stateVersion;
-        };
-        modules = [
-          ./modules/common/nixos-core/core.nix
-          ./modules/features/workstation/workstation.nix
-          ./modules/hosts/${hosts.laptop.hostName}/default.nix
-          home-manager.nixosModules.home-manager
-          ./modules/features/home-manager/decl.nix
-          disko.nixosModules.disko
-          ./modules/common/disko/bare-ext4.nix
-        ];
+        import ./modules/common/disko/bare-ext4.nix hosts.laptop;
+      nixosConfigurations = {
+        ${hosts.laptop.hostName} =
+          let
+            currentHost = hosts.laptop;
+          in
+          nixpkgs.lib.nixosSystem {
+            inherit
+              (
+                (builtins.fromJSON (
+                  builtins.readFile ./modules/hosts/${currentHost.hostName}/hardware_report.json
+                ))
+              )
+              system
+              ;
+            specialArgs = {
+              inherit inputs;
+              inherit configDirectory;
+              inherit users;
+              inherit currentHost;
+              inherit (currentHost) diskoConfig;
+            };
+            modules = [
+              ./modules/common/nixos-core/core.nix
+              ./modules/features/workstation/workstation.nix
+              ./modules/hosts/${currentHost.hostName}/default.nix
+              home-manager.nixosModules.home-manager
+              ./modules/features/home-manager/decl.nix
+              disko.nixosModules.disko
+              ./modules/common/disko/bare-ext4.nix
+            ];
+          };
       };
     };
 }

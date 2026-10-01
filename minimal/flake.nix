@@ -63,7 +63,9 @@
           nixpkgs.lib.nixosSystem {
             inherit
               (
-                (builtins.fromJSON (builtins.readFile ./modules/hosts/${currentHost.hostName}/hardware_report.json))
+                (builtins.fromJSON (
+                  builtins.readFile ./modules/hosts/${currentHost.hostName}/hardware_report.json
+                ))
               )
               system
               ;
