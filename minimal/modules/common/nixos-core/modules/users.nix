@@ -1,5 +1,4 @@
 {
-  hashedRootPassword,
   users,
   lib,
   ...
@@ -7,7 +6,7 @@
 {
   users = {
     mutableUsers = lib.mkDefault false;
-    users.root.hashedPassword = hashedRootPassword;
+    users.root = { inherit (users.root) hashedPassword; };
     users = {
       ${users.primary.userName} = {
         isNormalUser = true;
